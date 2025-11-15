@@ -154,6 +154,8 @@
 				<input type="text" id="focalLength" value="N/A">
 				<label><input type="checkbox" id="brandCheck" checked>Free Text:</label>
 				<input type="text" id="camera-brand" value="">
+				<label><input type="checkbox" id="timeCheck" checked>Time:</label>
+				<input type="text" id="time" value="2025:11:09 16:46:11">
 				</select>
 			</div>
 			<div class="exif-controls2">
@@ -196,6 +198,7 @@
 		const focalLength = document.getElementById('focalLength');
 		const lens = document.getElementById('lens');
 		const brand = document.getElementById('camera-brand');
+		const time = document.getElementById('time');
 
 		const cameraNameCheck = document.getElementById('cameraNameCheck');
 		const lensCheck = document.getElementById('lensCheck');
@@ -204,6 +207,7 @@
 		const apertureCheck = document.getElementById('apertureCheck');
 		const focalLengthCheck = document.getElementById('focalLengthCheck');
 		const brandCheck = document.getElementById('brandCheck');
+		const timeCheck = document.getElementById('timeCheck');
 
 		const expandAllInput = document.getElementById('expandAll');
 		const expandUpInput = document.getElementById('expandUp');
@@ -276,7 +280,7 @@
 				if (apertureCheck.checked) aperture.value = exifData.aperture || 'f/00';
 				if (focalLengthCheck.checked) focalLength.value = exifData.focalLength || '00mm, ';
 				if (brandCheck.checked) brand.value = exifData.brand || 'null';
-				dateTimeField = exifData.time || 'N/A';
+				if (timeCheck.checked) time.value = exifData.time || 'N/A';
 			}
 		}
 
@@ -329,7 +333,7 @@
 			const leftX = expandAll + 50 * ratio;
 			const rightX = leftX + textWidth;
 
-			const dataTime = dateTimeField.split(" ");
+			const dataTime = time.value.split(" ");
 			const rightBottomText2 = `${dataTime[0].replace(/:/g, '/') + " " + dataTime[1]}`;
 
 			const rightBottomText = `${brand.value}`;
